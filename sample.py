@@ -90,7 +90,24 @@ xs = asarray(xs)
 track = asarray(track)
 time = np.arange(0, len(xs)*dt, dt)
 
+print(xs.shape)
+position_x = xs[:, 0]
+alt_x = xs[:, 1]
+vel_x = xs[:, 2]
 
+position_t = track[:, 0]
+alt_t = track[:, 1]
+vel_t = track[:, 2]
+plt.subplot(3, 1, 1)
+plt.plot(time, position_x, 'b')
+plt.plot(time, position_t, 'g')
 
+plt.subplot(3, 1, 2)
+plt.plot(time, alt_x, 'b')
+plt.plot(time, alt_t, 'g')
 
+plt.subplot(3, 1, 3)
+plt.plot(time, vel_x, 'b')
+plt.plot(time, vel_t, 'g')
+plt.show()
 
