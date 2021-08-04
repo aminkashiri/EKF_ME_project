@@ -25,9 +25,9 @@ class MacroEKF(EKF):
         # self.R = Q_discrete_white_noise(5, dt=1, var=0.1) #adding noise
         self.hx = Matrix([[k], [delta], [n], [y]])
         self.h_jacob_format = self.hx.jacobian(self.x_sym)
-        self.fx = Matrix([[s * a * (k ** (1 - alpha)) - (delta + n) * k],
-                          [v_a], [0], [v_alpha], [0], [v_s], [0], [v_delta], [0],
-                          [v_n], [0]])
+        self.fx = Matrix([[s * a * (k ** (1 - alpha)) - (delta + n) * k+k],
+                          [v_a+a], [v_a], [v_alpha+alpha], [v_alpha], [v_s], [v_s], [v_delta+delta], [v_delta],
+                          [v_n+n], [v_n]])
         self.fx_jacob_format = self.fx.jacobian(self.x_sym)
         self.current_f = np.zeros((11, 1))
         print("fx jacob: ")
@@ -40,24 +40,28 @@ class MacroEKF(EKF):
         # print("subs : ", subs)
 
         F = array(self.fx_jacob_format.evalf(subs=subs))
-        F = F+np.eye(F.shape[0])
+        self.F = F.astype(float)
         # print("f : ")
         # display(F)
-        try:
-            self.F = F.astype(complex)
-        except:
-            print("F is : ", F)
+        # try:
+        #     self.F = F.astype(float)
+        # except:
+        #     print("F is : ", F)
 
     def compute_current_f(self):
         subs = {}
         for i, state in enumerate(self.x_sym):
             subs[state] = self.x[i, 0]
-        self.current_f = array(self.fx.evalf(subs=subs)).astype(complex)
+        self.current_f = array(self.fx.evalf(subs=subs)).astype(float)
+    #     try:
+    #         self.current_f = array(self.fx.evalf(subs=subs)).astype(float)
+    #     except:
+
 
 
     # def predict_x(self, u=0):
     #     # f = self.compute_current_f()
-    #     # # print("current f : ", f)
+    # #     # # print("current f : ", f)
     #     self.x = self.x + self.current_f
         # super().predict_x()
         # print("x : ", self.x)
@@ -81,11 +85,11 @@ def compute_current_jacob(x, jacob_format, x_format):
         subs[state] = x[i, 0]
 
     jacob_format = jacob_format.evalf(subs=subs)
-    result = np.array(jacob_format)
-    try:
-        result = result.astype(float)
-    except:
-        result = result.astype(complex)
+    result = np.array(jacob_format).astype(float)
+    # try:
+    #     result = result.astype(float)
+    # except:
+    #     result = result.astype(complex)
     return result
 
 
@@ -98,23 +102,23 @@ def compute_current_h(x, matrix, x_format):
 
     result = matrix.evalf(subs=subs)
     # print("hx result : ", result)
-    return result
+    return np.array(result).astype(float)
 
 
-ekf = MacroEKF()
-
-display(ekf.h_jacob_format)
-print(" = ")
-n = compute_current_jacob(array([[1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11]]), ekf.h_jacob_format,
-                          ekf.x_sym)
-display(n)
-
-# display(ekf.hx)
+# ekf = MacroEKF()
+#
+# display(ekf.h_jacob_format)
 # print(" = ")
-# h = compute_current_h([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ekf.hx, ekf.x_sym)
-# display(h)
-
-display(ekf.fx)
+# n = compute_current_jacob(array([[1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11]]), ekf.h_jacob_format,
+#                           ekf.x_sym)
+# display(n)
+#
+# # display(ekf.hx)
+# # print(" = ")
+# # h = compute_current_h([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], ekf.hx, ekf.x_sym)
+# # display(h)
+#
+# display(ekf.fx)
 
 
 def read_data(path):
@@ -136,7 +140,7 @@ def avg(lst):
 def train_filter(df):
     df.fillna(0, inplace=True)
     first_row = df.iloc[0]
-    x = np.array([[1], [1], [0], [0.5], [0.01], [first_row['s']], [0.001], [0.5], [0.01], [0], [0.001]])
+    x = np.array([[1], [1], [0], [0.5], [0.0001], [first_row['s']], [0.0001], [0.01], [0.0001], [0], [0.0001]])
     ekf = MacroEKF()
     ekf.x = x
     ekf.compute_f()
