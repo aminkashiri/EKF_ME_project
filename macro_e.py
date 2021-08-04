@@ -40,6 +40,7 @@ class MacroEKF(EKF):
         # print("subs : ", subs)
 
         F = array(self.fx_jacob_format.evalf(subs=subs))
+        F = F+np.eye(F.shape[0])
         # print("f : ")
         # display(F)
         try:
@@ -54,10 +55,10 @@ class MacroEKF(EKF):
         self.current_f = array(self.fx.evalf(subs=subs)).astype(complex)
 
 
-    def predict_x(self, u=0):
-        # f = self.compute_current_f()
-        # # print("current f : ", f)
-        self.x = self.x + self.current_f
+    # def predict_x(self, u=0):
+    #     # f = self.compute_current_f()
+    #     # # print("current f : ", f)
+    #     self.x = self.x + self.current_f
         # super().predict_x()
         # print("x : ", self.x)
         # print("F : ", self.F)
@@ -159,6 +160,7 @@ def train_filter(df):
         actual_n.append(row['n'])
         actual_a.append(row['A'])
         current_t = row['Unnamed: 0']
+        print(f"running with current time : {current_t}")
         if current_t < 1390:
             ekf.update(array(z).reshape(4, 1), compute_current_jacob, compute_current_h,
                        args=(ekf.h_jacob_format, ekf.x_sym), hx_args=(ekf.hx, ekf.x_sym))
