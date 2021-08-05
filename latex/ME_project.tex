@@ -311,23 +311,6 @@ F(K, L) = AL^\alpha K^{(1-\alpha)}
 \end{equation}
 \end{LTR}
 
-که در آن
-$n = \frac{\dot{L}}{L}$
-نرخ رشد جمعیت،
-$k = \frac{K}{L}$
- سرمایه به ازای هر فرد،
- $\delta$
-  نرخ استهلاک سرمایه موجود و 
-$f(k) = F(\frac{K}{L}, 1)$
-. معمولا فرض می‌شود که 
- $f(k)$
- یک تابع صعودی و اکیدا مقعر است. 
-
-
-
-	
-
-
 
 
 	برای این که روی داده‌های واقعی مدل کاب-داگلاس را اعمال کنیم، مقادیر 
@@ -340,7 +323,9 @@ K
  $\alpha$
   ثابت تخمین زده می‌شوند در صورتی که واقعا متغیرند. ما در این مقاله، تمامی پارامتر‌ها را متغیر در نظر می‌گیریم، و فرض می‌کنیم که نرخ تغییرات هرکدام از آن‌ها ثابت است. 
 
-	با در نظر گرفتن تمامی فرض‌های بالا، نمایش حالت-فضا برای مدل ما به صورت زیر می‌شود:
+	با در نظر گرفتن تمامی فرض‌های بالا، نمایش حالت-فضا
+\LTRfootnote{State-space}
+	 برای مدل ما به صورت زیر می‌شود:
 
 \useshortskip
 \begin{LTR}
@@ -386,6 +371,36 @@ $v_i$
 
 
 
+\pgfkeys{/pgf/number format/.cd,1000 sep={\,}}
+
+
+
+
+
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[ width=7.5cm,
+    scaled y ticks=false,
+    y tick label style={
+        /pgf/number format/fixed,
+        /pgf/number format/precision=4
+    },
+  height=6cm,
+xmin=1370, xmax=1397,
+ymin=1420, ymax=96335,
+label style={font=\tiny,set thousands separator={}},tick label style={font=\tiny}]
+
+\addplot [blue] table [mark=none,x=year, y=Dollars to Rials, col sep=comma] {dollar.csv};
+
+\end{axis}
+\end{tikzpicture}
+
+\nopagebreak
+
+شکل ۱: میانگین نرخ سالیانه‌ی دلار
+$\delta$
+\end{center}
 
 
 
@@ -909,7 +924,6 @@ $\delta$
 
 
 
-\pgfkeys{/pgf/number format/.cd,1000 sep={\,}}
 
 
 
@@ -942,7 +956,7 @@ label style={font=\tiny,set thousands separator={}},tick label style={font=\tiny
 
 \nopagebreak
 
-شکل ۱: نرخ استهلاک
+شکل ۲: نرخ استهلاک
 $\delta$
 \end{center}
 
@@ -977,7 +991,7 @@ label style={font=\tiny,set thousands separator={}},tick label style={font=\tiny
 
 \nopagebreak
 
-شکل۲: نرخ رشد نیروی کار
+شکل ۳: نرخ رشد نیروی کار
 $n$
 \end{center}
 
@@ -1012,7 +1026,7 @@ label style={font=\tiny,set thousands separator={}},tick label style={font=\tiny
 
 \nopagebreak
 
-شکل ۳: نرخ پس‌انداز
+شکل ۴: نرخ پس‌انداز
 $s$
 \end{center}
 
@@ -1047,13 +1061,13 @@ label style={font=\tiny,set thousands separator={}},tick label style={font=\tiny
 
 \nopagebreak
 
-شکل ۴: سرمایه‌ به ازای هر فرد
+شکل ۵: سرمایه‌ به ازای هر فرد
 $k$
 
 
 \includegraphics[width=6.2cm, height=5.2cm]{chart.png}
 
-شکل 5:نرخ استهلاک
+شکل ۶:نرخ استهلاک
 $\delta$
 در مقاله‌ی مبنا
 
@@ -1129,8 +1143,7 @@ $n$
 
 در این مقاله، برای تکنیک تخمین زدن از EKF استفاده کرده‌ایم. دلیل این انتخاب این است که EKF نقطه‌ی شروع مناسبی برای استفاده از تخمین‌هایی با روش فیلترینگ غیرخطی برای این مدل از مسائل است. در عین حال لازم است که دقت کنید که به این منظور می‌توان از روش‌های دیگر تخمین‌ با استفاده از فیلترینگ غیرخطی نیز استفاده کرد.
 
-نتایج تئوری به دست آمده از آنالیز مشاهده‌پذیری نه تنها می‌توانند برای آزمایش قابل استفاده بودن EKF استفاده شوند بلکه می‌توانند برای سایر تکنیک‌های تخمین زدن بر مبنای فضا-حالت
-\LTRfootnote{State-space}
+نتایج تئوری به دست آمده از آنالیز مشاهده‌پذیری نه تنها می‌توانند برای آزمایش قابل استفاده بودن EKF استفاده شوند بلکه می‌توانند برای سایر تکنیک‌های تخمین زدن بر مبنای حالت-فضا
 نیز استفاده شوند. ار آنجایی که مشاهده‌پذیری یک خاصیت ذاتی سیستم است، در صورت استفاده از سایر روش‌ها نیز تمامی روابط و مراحل بالا برقرار هستند، و می‌توانیم از آن‌ها استفاده کنیم.
 
 با توجه به موارد گفته شده، گام بعدی پس از بهینه‌سازی کد استفاده شده (به خصوص روی داده‌های ایران) این است که فیلتر‌های دیگری مثل
