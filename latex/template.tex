@@ -1,0 +1,96 @@
+%بسم الله الرحمن الرحیم
+
+%You should edit DSLecture.tex, not this file!
+\usepackage{amsthm}
+\usepackage{latexsym}
+\usepackage{amssymb}
+\usepackage{verbatim}
+\usepackage{enumitem,amsmath,array}
+\usepackage{tikz}
+\usepackage{tkz-graph}
+\usepackage{bookmark}
+\usetikzlibrary{positioning,chains,fit,shapes,calc}
+%a4paper, margin=0.7in     , paperwidth=16cm,paperheight=24cm
+%\usepackage[paperwidth=20cm,paperheight=29cm]{geometry}
+\usepackage[a4paper, margin=0.7in]{geometry}
+\usepackage{listings}
+\usepackage{clrscode3e}
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+}
+\usepackage{xepersian}
+%\usepackage[fontsloadable]{xepersian}
+
+\settextfont{HM XNiloofar}
+%\setdigitfont{HM XNiloofar}
+%\setdigitfont{ParsiDigits}
+\defpersianfont\outline[Scale=1]{HM XNiloofar Outline}
+
+\setlength{\parindent}{1.5em}
+\setlength{\parskip}{0.9em}
+\renewcommand{\baselinestretch}{1.4}
+
+
+\newcommand{\lecture}[3]{
+%\pagestyle{empty}
+{
+	\begin{center}
+			\vspace{-1cm}
+		   \includegraphics[scale=0.35]{Sharif}%\hfill \\[1em]  
+	\end{center}
+	\vspace{-8mm}
+
+%\bf
+
+%\begin{outline} 
+
+%\end{outline} 
+
+}\vspace*{-1em}
+\noindent
+ #2 \hfill 
+\vspace{-4mm}
+\rule{\textwidth}{1pt}
+\ \\
+}
+
+% example environment
+\newenvironment{example}
+{\smallskip \noindent \emph{مثال:}}
+{\hfill $\boxtimes$ \smallskip}
+
+
+\newtheorem{theorem}{قضیه}
+\newtheorem{proposition}{گزاره}
+\newtheorem{claim}{ادعا}
+\newtheorem{lemma}{لم}
+\newtheorem{corollary}{نتیجه}
+\newtheorem{definition}{تعریف} % Use this for non-trivial definitions.
+\newcommand*{\newtitle}[1]{
+\begin{large}
+\textbf{#1}
+\end{large}
+}
+\newcommand*{\newhline}{
+\vspace{-7mm}
+\rule{\textwidth}{1pt}
+
+}
+\newcommand*{\newsline}{
+\vspace{-7mm}
+\rule{8cm}{1pt}
+
+}
+\newcommand*{\maintitle}[1]{
+\begin{center}
+\textbf{
+\LARGE{#1}
+}
+\end{center}
+}
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
