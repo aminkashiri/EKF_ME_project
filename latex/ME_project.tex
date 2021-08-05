@@ -378,47 +378,6 @@ $v_i$
 
 
 
-\begin{center}
-\begin{tikzpicture}
-\begin{axis}[ width=7.5cm,
-    scaled y ticks=false,
-    y tick label style={
-        /pgf/number format/fixed,
-        /pgf/number format/precision=4
-    },
-  height=6cm,
-xmin=1370, xmax=1397,
-ymin=1420, ymax=96335,
-label style={font=\tiny,set thousands separator={}},tick label style={font=\tiny}]
-
-\addplot [blue] table [mark=none,x=year, y=Dollars to Rials, col sep=comma] {dollar.csv};
-
-\end{axis}
-\end{tikzpicture}
-
-\nopagebreak
-
-شکل ۱: میانگین نرخ سالیانه‌ی دلار
-\end{center}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -955,7 +914,7 @@ label style={font=\tiny,set thousands separator={}},tick label style={font=\tiny
 
 \nopagebreak
 
-شکل ۲: نرخ استهلاک
+شکل ۱: نرخ استهلاک
 $\delta$
 \end{center}
 
@@ -990,7 +949,7 @@ label style={font=\tiny,set thousands separator={}},tick label style={font=\tiny
 
 \nopagebreak
 
-شکل ۳: نرخ رشد نیروی کار
+شکل ۲: نرخ رشد نیروی کار
 $n$
 \end{center}
 
@@ -1025,7 +984,7 @@ label style={font=\tiny,set thousands separator={}},tick label style={font=\tiny
 
 \nopagebreak
 
-شکل ۴: نرخ پس‌انداز
+شکل ۳: نرخ پس‌انداز
 $s$
 \end{center}
 
@@ -1060,16 +1019,40 @@ label style={font=\tiny,set thousands separator={}},tick label style={font=\tiny
 
 \nopagebreak
 
-شکل ۵: سرمایه‌ به ازای هر فرد
+شکل ۴: سرمایه‌ به ازای هر فرد
 $k$
 
 
 \includegraphics[width=6.2cm, height=5.2cm]{chart.png}
 
-شکل ۶:نرخ استهلاک
+شکل ۵:نرخ استهلاک
 $\delta$
 در مقاله‌ی مبنا
 
+
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[ width=7.5cm,
+    scaled y ticks=false,
+    y tick label style={
+        /pgf/number format/fixed,
+        /pgf/number format/precision=4
+    },
+  height=6cm,
+xmin=1370, xmax=1397,
+ymin=1420, ymax=96335,
+label style={font=\tiny,set thousands separator={}},tick label style={font=\tiny}]
+
+\addplot [blue] table [mark=none,x=year, y=Dollars to Rials, col sep=comma] {dollar.csv};
+
+\end{axis}
+\end{tikzpicture}
+
+\nopagebreak
+
+شکل ۶: میانگین نرخ سالیانه‌ی دلار
+\end{center}
 \end{center}
 
 
